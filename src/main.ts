@@ -1,4 +1,18 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import {createApp} from 'vue';
+import App from './App.vue';
+import axios from "axios";
+import {router} from "@/router";
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
-createApp(App).mount('#app')
+const app = createApp(App);
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://statistics.kisin.tech/api";
+app.config.globalProperties.$axios = axios;
+
+app.use(router);
+
+app.use(ElementPlus);
+
+app.mount('#app');
